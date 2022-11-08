@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario de Cadastro</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+<header>
+ <nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/exibirInscricao">Inscreva-se</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/listarInscricao">Visualizar inscrições</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
+
+<div class="container col-sm-12 col-md-6 col-md-offset-2" >
+		<form action="/salvarInscricao" th:object="${inscricao}" method="post">
+			<div class="form-group">
+				<label for="codigo"></label> <input type="hidden" th:field="*{codigo}"
+					class="form-control" id="codigo" placeholder="Codigo do Inscricao">
+			</div>
+			
+			<div class="form-group">
+				<label for="data">Data da inscricao</label> <input type="date" class="form-control"
+					th:field="*{data}" />
+			</div>
+			<Br/>
+			<div class="form-group form-check">
+				<label for="categ">Categorias</label><Br/>
+					<input type="radio" class="form-check-input"
+					th:field="*{categ}" th:value="GERAL" />
+					<label class="form-check-label">GERAL</label>
+					<div>
+					<input type="radio" class="form-check-input" th:field="*{categ}" th:value="MASTER" />
+					<label class="form-check-label">MASTER</label>
+					</div>
+					<div>
+					<input type="radio" class="form-check-input" th:field="*{categ}" th:value="SENIOR" />
+					<label class="form-check-label">SENIOR</label> 
+					</div>
+					<div>
+					<input type="radio" class="form-check-input" th:field="*{categ}" th:value="ESPECIAL" />
+					<label class="form-check-label">ESPECIAL</label> 
+					</div>
+			</div>
+			<Br/>
+			
+			<div class="form-group form-check">
+				<label for="categ">SEXO</label><Br/>
+					<input type="radio" class="form-check-input"
+					th:field="*{sexo}" th:value="FEMININO" />
+					<label class="form-check-label">FEMININO</label>
+					<div>
+					<input type="radio" class="form-check-input" th:field="*{sexo}" th:value="MASCULINO" />
+					<label class="form-check-label">MASCULINO</label>
+					</div>
+					
+			</div>
+				<Br/>
+		
+			<div class="form-group">
+				<label for="data">Data de Nascimento</label> <input type="date" class="form-control"
+					th:field="*{data_nascimento}" />
+			</div>
+			<div class="form-group">
+				<label for="quantity">Idade</label> <input type="number" th:field="*{idade}"
+					class="form-control" id="quantity" name="quantity" min="1" max="99" placeholder="idade">
+			</div>
+			<div class="form-group">
+				<label for="nome">Nome</label> <input type="text" th:field="*{nome}"
+					class="form-control" id="nome" placeholder="Nome">
+			</div>
+			<div class="form-group">
+				<label for="phone">Telefone</label> <input type="tel" th:field="*{telefone}"
+					class="form-control" id="phone" name="phone"   placeholder="telefone">
+			</div>
+			<div class="form-group">
+				<label for="nome">Email</label> <input type="text" th:field="*{email}"
+					class="form-control" id="nome" placeholder="email">
+					
+					<div class="form-group">
+				<label for="gs">Tipo Sanguineo</label> 
+				<select class="form-control" id=""
+					th:field="*{gs}">
+					<option th:value="''">Selecione</option>
+					<option th:each="gs : ${T(com.br.ifpe.model.GS).values()}" th:text="${gs}" th:value="${gs}"></option>
+				</select>
+			</div>
+			</div>
+			<div class="form-group">
+				<label for="nome">Convenio</label> <input type="text" th:field="*{convenio}"
+					class="form-control" id="nome" placeholder="convenio">
+			</div>
+			<div class="form-group">
+				<label for="nome">Equipe</label> <input type="text" th:field="*{equipe}"
+					class="form-control" id="nome" placeholder="equipe">
+			</div>
+			<div class="form-group">
+				<label for="nome">Rua</label> <input type="text" th:field="*{endereco.rua}"
+					class="form-control" id="nome" placeholder="rua">
+			</div>
+			<div class="form-group">
+				<label for="quantity">Numero</label> <input type="number" th:field="*{endereco.numero}"
+					class="form-control" id="quantity" placeholder="numero">
+			</div>
+			<div class="form-group">
+				<label for="nome">Bairro</label> <input type="text" th:field="*{endereco.bairro}"
+					class="form-control" id="nome" placeholder="bairro">
+			</div>
+			<div class="form-group">
+				<label for="nome">Cidade</label> <input type="text" th:field="*{endereco.cidade}"
+					class="form-control" id="nome" placeholder="cidade">
+			</div>
+			<div class="form-group">
+				<label for="nome">Estado</label> <input type="text" th:field="*{endereco.estado}"
+					class="form-control" id="nome" placeholder="estado">
+			</div>
+			
+	
+			<button type="submit" class="btn btn-dark">Enviar</button>
+		</form>
+		</div>
+
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</html>

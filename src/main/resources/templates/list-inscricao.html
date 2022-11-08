@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista dos Cadastrados</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<body>
+<header>
+ <nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/exibirInscricao">Inscreva-se</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/listarInscricao">Visualizar inscrições</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
+
+
+<div class="contatiner col-sm-8 col-md-12 col-md-offset-2">
+		<table class="table table-secondary">
+			<tr>
+				<th>N da Inscricao</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Equipe</th>
+				<th>Data da Inscricao</th>
+				<th>Acões</th>
+			</tr>
+			<tr th:each="cont : ${lista}">
+			<td th:text="${cont.codigo}"></td>
+				<td th:text="${cont.nome}"></td>
+				<td th:text="${cont.email}"></td>
+				<td th:text="${cont.equipe}"></td>
+				<td th:text="${cont.data}"></td>
+				<td><a th:href="|/editarInscricao?codigo=${cont.codigo}|"><i class="bi bi-pencil-fill text-dark"></i></a>&nbsp;&nbsp;
+					<a th:href="|removerInscricao?codigo=${cont.codigo}|"><i class="bi bi-trash3-fill text-dark"></i></a></td>
+			</tr>
+		</table>
+		<hr/>
+	</div>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</html>
